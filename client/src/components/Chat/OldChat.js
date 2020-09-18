@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
+import { InfoBar } from "../InfoBar/InfoBar";
+import { Input } from "../Input/Input";
 
 let socket;
 
@@ -10,7 +12,7 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const ENDPOINT = "localhost:5000";
+  const ENDPOINT = "http://localhost:5000";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -20,7 +22,12 @@ const Chat = ({ location }) => {
     setName(name);
     setRoom(room);
 
-    socket.emit("join", { name, room });
+    // posli vstupne udaje - meno a miestnost
+    socket.emit("join", { name, room }, (error) => {
+      if (error) {
+        alert(error);
+      }
+    });
 
     return () => {
       socket.emit("disconnect");
@@ -43,17 +50,18 @@ const Chat = ({ location }) => {
       socket.emit("sendMessage", message, () => setMessage(""));
     }
   };
-  
+
   console.log(message, messages);
   return (
     <div>
       <div>
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyPress={(e) => (e.key === "Enter" ? sendMessage(e) : null)}
+        <Input
+          message={messages}
+          setMessage={setMessage}
+          sendMessage={sendMessage}
         />
       </div>
+      <InfoBar room={room} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ const Join = () => {
   const [room, setRoom] = useState("");
   return (
     <div>
-      <h1>Join</h1>
+      <h1>Dedinky</h1>
       <input placeholder='meno' onChange={(e) => setName(e.target.value)} />
       <input placeholder='dedina' onChange={(e) => setRoom(e.target.value)} />
       <Link
