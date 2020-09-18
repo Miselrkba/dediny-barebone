@@ -2,8 +2,8 @@ const users = [];
 
 const addUser = ({ id, name, room }) => {
   // odstranenie whitespace
-  name = name.trim().toLowerCase();
-  room = room.trim().toLowerCase();
+  name = name.trim()
+  room = room.trim()
 
   // check ci je uzivatelske meno uz pouzite
   const existingUser = users.find(

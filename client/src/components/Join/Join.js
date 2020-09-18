@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import '../../main.css'
+
+import besenova from '../../images/besenova.jpg'
+
+
 const dediny = [
   "Ružomberok",
   "Hubová",
@@ -28,6 +33,7 @@ const dediny = [
   " Valaská Dubová",
 ];
 
+
 const Join = () => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
@@ -35,14 +41,14 @@ const Join = () => {
   // nastav prvotnu miestnost
   useEffect(() => {
     setRoom("Ružomberok");
-    console.log('useEffect');
   }, []);
-
-  
 
   return (
     <div>
       <h1>Dedinky</h1>
+      <div>
+      <img className='main-img' src={besenova} alt="besenova" />
+      </div>
       <input placeholder="meno" onChange={(e) => setName(e.target.value)} />
 
       <label htmlFor="dediny">Vyberte si dedinu:</label>
@@ -51,7 +57,6 @@ const Join = () => {
         id="dediny"
         onChange={(e) => setRoom(e.target.value)}
       >
-        
       {/* Mapuj cez dediny  */}
         {dediny.map((dedina) => (
           <option value={dedina} key={dedina}  >
