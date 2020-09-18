@@ -8,12 +8,13 @@ import { TextContainer } from "../TextContainer/TextContainer";
 
 let socket;
 
+
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState('')
+  const [users, setUsers] = useState("");
 
   const ENDPOINT = "http://localhost:5000";
 
@@ -44,9 +45,9 @@ const Chat = ({ location }) => {
       setMessages([...messages, message]);
     });
     // ukaz uzivatelov v miestnosti - cakanie z backendu
-    socket.on('roomData', ({users}) => {
-        setUsers(users)
-    })
+    socket.on("roomData", ({ users }) => {
+      setUsers(users);
+    });
   }, [messages]);
 
   // posielanie sprav
@@ -58,10 +59,9 @@ const Chat = ({ location }) => {
     }
   };
 
-  
   return (
     <div>
-        <TextContainer users={users} />
+      <TextContainer users={users} />
       <div>
         <Input
           message={message}
@@ -76,5 +76,3 @@ const Chat = ({ location }) => {
 };
 
 export default Chat;
-
-// testing
