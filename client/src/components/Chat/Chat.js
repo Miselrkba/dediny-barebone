@@ -58,7 +58,7 @@ const Chat = ({ location }) => {
     }
   };
 
-  console.log(message, messages);
+  
   return (
     <div>
         <TextContainer users={users} />

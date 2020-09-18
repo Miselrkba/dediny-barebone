@@ -68,6 +68,11 @@ io.on("connection", (socket) => {
         user: "admin",
         text: `${user.name} odišiel z miestnosti`,
       });
+      // updatuj uzivatelov v miestnosti
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
     }
   });
 });
