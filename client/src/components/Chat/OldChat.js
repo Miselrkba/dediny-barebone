@@ -3,6 +3,10 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import { InfoBar } from "../InfoBar/InfoBar";
 import { Input } from "../Input/Input";
+import { Messages } from "../Messages/Messages";
+import { TextContainer } from "../TextContainer/TextContainer";
+
+import "../../main.css";
 
 let socket;
 
@@ -11,6 +15,7 @@ const Chat = ({ location }) => {
   const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [users, setUsers] = useState("");
 
   const ENDPOINT = "http://localhost:5000";
 
@@ -40,6 +45,10 @@ const Chat = ({ location }) => {
     socket.on("message", (message) => {
       setMessages([...messages, message]);
     });
+    // ukaz uzivatelov v miestnosti - cakanie z backendu
+    socket.on("roomData", ({ users }) => {
+      setUsers(users);
+    });
   }, [messages]);
 
   // posielanie sprav
@@ -51,17 +60,18 @@ const Chat = ({ location }) => {
     }
   };
 
-  console.log(message, messages);
   return (
-    <div>
-      <div>
+    <div className="background">
+      <div className="wrapper">
+        <InfoBar room={room} />
+        <TextContainer users={users} />
         <Input
-          message={messages}
+          message={message}
           setMessage={setMessage}
           sendMessage={sendMessage}
         />
+        <Messages messages={messages} name={name} />
       </div>
-      <InfoBar room={room} />
     </div>
   );
 };

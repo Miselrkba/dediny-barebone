@@ -2,36 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import '../../main.css'
-
+import dediny from '../Helpers/dediny'
 import besenova from '../../images/besenova.jpg'
-
-
-const dediny = [
-  "Ružomberok",
-  "Hubová",
-  "Ivachnová",
-  "Kalameny",
-  "Komjatná",
-  "Likavka",
-  "Liptovská Lúžna",
-  "Liptovská Osada",
-  "Liptovská Štiavnica",
-  "Liptovská Teplá",
-  " Liptovské Revúce",
-  " Liptovské Sliače",
-  " Liptovský Michal",
-  "Lisková",
-  "Ľubochňa",
-  "Lúčky",
-  "Ludrová",
-  " Martinček",
-  "Potok",
-  "Stankovany",
-  "Štiavnička",
-  "Švošov",
-  "Turík",
-  " Valaská Dubová",
-];
 
 
 const Join = () => {
@@ -44,7 +16,7 @@ const Join = () => {
   }, []);
 
   return (
-    <div>
+    <div className='join'>
       <h1>Dedinky</h1>
       <div>
       <img className='main-img' src={besenova} alt="besenova" />
@@ -77,3 +49,5 @@ const Join = () => {
 };
 
 export default Join;
+
+

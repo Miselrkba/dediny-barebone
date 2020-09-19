@@ -3,10 +3,10 @@ import React from "react";
 export const InfoBar = ({ room }) => {
   return (
     <div>
-      <div>
-        <h3>{room}</h3>
+      <div className="header">
+        <h1>{room}</h1>
       </div>
-      <div>
+      <div className='back-link'>
         <a href="/">naspäť</a>
       </div>
     </div>

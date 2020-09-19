@@ -1,19 +1,20 @@
+const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const http = require("http");
-const router = require("./router");
+const cors = require("cors");
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
-const PORT = process.env.PORT || 5000;
+const router = require("./router");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+app.use(cors());
 app.use(router);
 
-io.on("connection", (socket) => {
+io.on("connect", (socket) => {
   socket.on("join", ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
     // ak je uz tento uzivatel existuje vrat chybu
@@ -25,14 +26,13 @@ io.on("connection", (socket) => {
     // posli privitaciu spravu
     socket.emit("message", {
       user: "admin",
-      text: `${user.name}, vitaj v dedine ${user.room}`,
+      text: `${user.name}, welcome to room ${user.room}.`,
     });
 
     // ohlas kazdemu v miestnosti kto vstupil
-    socket.broadcast.to(user.room).emit("message", {
-      user: "admin",
-      text: `${user.name}, vstúpil do miestnosti`,
-    });
+    socket.broadcast
+      .to(user.room)
+      .emit("message", { user: "admin", text: `${user.name} has joined!` });
 
     // ukaz uzivatelov v miestnosti
     io.to(user.room).emit("roomData", {
@@ -43,8 +43,6 @@ io.on("connection", (socket) => {
     // spusti prazdny callback zakazdym
     // ak je chyba zobraz chybu hore
     callback();
-
-    console.log(name, room);
   });
 
   // cakanie na spravy od uzivatela. callback sa spusti po poslani
@@ -52,6 +50,7 @@ io.on("connection", (socket) => {
   socket.on("sendMessage", (message, callback) => {
     // zobrat id uzivatela
     const user = getUser(socket.id);
+
     // ist do miestnosti a posle spravu od uzivatela
     io.to(user.room).emit("message", { user: user.name, text: message });
 
@@ -65,9 +64,10 @@ io.on("connection", (socket) => {
     // posli spravu ostatnym ked sa uzivatel odpoji
     if (user) {
       io.to(user.room).emit("message", {
-        user: "admin",
-        text: `${user.name} odišiel z miestnosti`,
+        user: "Admin",
+        text: `${user.name} has left.`,
       });
+
       // updatuj uzivatelov v miestnosti
       io.to(user.room).emit("roomData", {
         room: user.room,
@@ -77,4 +77,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT, () => console.log(`Server je spusteny na porte ${PORT}`));
+server.listen(process.env.PORT || 5000, () =>
+  console.log(`Server has started.`)
+);

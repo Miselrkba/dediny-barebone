@@ -2,7 +2,7 @@ import React from "react";
 
 export const Input = ({ message, setMessage, sendMessage }) => {
   return (
-    <form>
+    <form className="input">
       <input
         type="text"
         placeholder="Napíšte správu"

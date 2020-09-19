@@ -3,8 +3,7 @@ const socketio = require("socket.io");
 const http = require("http");
 const router = require("./router");
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
-
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
 const PORT = process.env.PORT || 5000;
 
@@ -26,13 +25,19 @@ io.on("connection", (socket) => {
     // posli privitaciu spravu
     socket.emit("message", {
       user: "admin",
-      text: `${user.name}, vitaj v dedine ${user.room}`
+      text: `${user.name}, vitaj v miestnosti ${user.room}`,
     });
 
     // ohlas kazdemu v miestnosti kto vstupil
     socket.broadcast.to(user.room).emit("message", {
       user: "admin",
       text: `${user.name}, vstúpil do miestnosti`,
+    });
+
+    // ukaz uzivatelov v miestnosti
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
     });
 
     // spusti prazdny callback zakazdym
@@ -53,8 +58,22 @@ io.on("connection", (socket) => {
     callback();
   });
 
+  // odstranit uzivatela ked sa odpoji
   socket.on("disconnect", () => {
-    console.log("Uzivatel odisiel");
+    const user = removeUser(socket.id);
+
+    // posli spravu ostatnym ked sa uzivatel odpoji
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: "admin",
+        text: `${user.name} odišiel z miestnosti`,
+      });
+      // updatuj uzivatelov v miestnosti
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
   });
 });
 

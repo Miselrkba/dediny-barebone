@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export const Message = ({ message: { user, text }, name }) => {
   let isSentByCurrentUser = false;
 

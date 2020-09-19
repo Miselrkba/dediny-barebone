@@ -4,14 +4,14 @@ export const TextContainer = ({ users }) => {
   return (
     <div>
       {users ? (
-        <div>
+        <div className="aside aside-1">
           {" "}
-          <h1>Používatelia v miestnosti:</h1>{" "}
-          <h2>
+          <h3>Používatelia v miestnosti:</h3>{" "}
+          <h4>
             {users.map(({ name }) => (
               <div key={name}>{name}</div>
             ))}
-          </h2>
+          </h4>
         </div>
       ) : null}
     </div>
