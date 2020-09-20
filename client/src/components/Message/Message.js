@@ -11,18 +11,18 @@ export const Message = ({ message: { user, text }, name }) => {
   }
 
   return isSentByCurrentUser ? (
-    <div>
-      <p>{trimmedName}</p>
+    <div className="messageContainer">
+      <p className="sentText pr-10">{trimmedName}</p>
       <div>
         <p>{text}</p>
       </div>
     </div>
   ) : (
-    <div>
-      <div>
-        <p>{text}</p>
+    <div className="messageContainer">
+      <p className="sentText colorBrown pr-10">{user}</p>
+      <div className="messageBox">
+        <p className="messageText colorBrown">{text}</p>
       </div>
-      <p>{user}</p>
     </div>
   );
 };

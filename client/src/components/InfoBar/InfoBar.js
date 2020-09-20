@@ -3,12 +3,12 @@ import React from "react";
 export const InfoBar = ({ room }) => {
   return (
     <div>
-      <div className="header">
+      <div className="main-title-join">
         <h1>{room}</h1>
       </div>
-      <div className='back-link'>
-        <a href="/">naspäť</a>
-      </div>
+      <button type="button" className="back-btn btn btn-light">
+        <a className='text-secondary' href="/">Naspäť</a>
+      </button>
     </div>
   );
 };

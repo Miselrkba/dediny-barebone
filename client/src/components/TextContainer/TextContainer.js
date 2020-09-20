@@ -1,17 +1,22 @@
 import React from "react";
+import onlineIcon from "../../icons/onlineIcon.png";
 
 export const TextContainer = ({ users }) => {
   return (
     <div>
       {users ? (
-        <div className="aside aside-1">
+        <div className="user side">
           {" "}
-          <h3>Používatelia v miestnosti:</h3>{" "}
-          <h4>
+          <h5>Používatelia :</h5>{" "}
+          <h6>
             {users.map(({ name }) => (
-              <div key={name}>{name}</div>
+              <div key={name}>
+                <img className='icon' alt="Online Icon" src={onlineIcon} />
+                {name}
+                
+              </div>
             ))}
-          </h4>
+          </h6>
         </div>
       ) : null}
     </div>
