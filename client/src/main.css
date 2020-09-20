@@ -11,13 +11,8 @@ body {
   background-size: cover;
 }
 
-.main-img {
-  width: 15em;
-}
-
-.outerContainer {
+.background-join {
   background-image: url("./images/6.jpg");
-  /* background: darkorange; */
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -62,7 +57,7 @@ body {
   margin-bottom: -5px;
 }
 
-.enter {
+.enter-room {
   display: flex;
   justify-content: center;
   padding: 1em;
@@ -77,14 +72,6 @@ body {
   border: 1px solid black;
 }
 
-/* .back-link {
-  background: wheat;
-  border-radius: 2em;
-  font-size: 1em;
-  padding: 0.5em;
-  margin: 0.5em;
-} */
-
 .back-btn {
   margin: 1em;
 }
@@ -93,44 +80,19 @@ a:link {
   text-decoration: none;
 }
 
-.users {
-  background: wheat;
-}
-
 .input {
   display: flex;
   justify-content: center;
 }
 
-/* ************Testing */
-/* .messageBox {
-  background: #f3f3f3;
-  border-radius: 20px;
-  padding: 5px 20px;
-  color: white;
-  display: inline-block;
-  max-width: 80%;
-} */
-
-/* .messageText {
-  width: 100%;
-  letter-spacing: 0;
-  float: left;
-  font-size: 1.1em;
-  word-wrap: break-word;
-} */
-
 .messageContainer {
   display: flex;
-  /* padding: 0 5%;
-  margin-top: 1em; */
   margin-left: 13px;
   padding: 6px;
-  
 }
 
-.messageContainer p{
-    margin-bottom: 0.4em;
+.messageContainer p {
+  margin-bottom: 0.4em;
 }
 
 .sentText {
@@ -139,55 +101,35 @@ a:link {
   font-family: Helvetica;
   color: #828282;
   letter-spacing: 0.3px;
-}
-
-.pl-10 {
-  padding-left: 10px;
-}
-
-.pr-10 {
   padding-right: 10px;
 }
 
-/* .justifyStart {
-  justify-content: flex-start;
-} */
-
-/* .justifyEnd {
-  justify-content: flex-end;
-} */
-
-.colorWhite {
-  color: white;
+.colorRed {
+  color: crimson;
 }
 
-.colorBrown {
-  color: brown;
+.colorOrange {
+  color: #fd7e14;
 }
 
-.backgroundBlue {
-  background: #2979ff;
+.colorBlack {
+  color: #212529;
 }
 
-/* .backgroundLight {
-  background: #f3f3f3;
-} */
+.colorBlue {
+  color: dodgerblue;
+}
 
-/* 
-***testing responsive  */
 
-.row {
+.users-and-messages {
   display: flex;
   margin: 0.5em;
 }
 
-/* Create two unequal columns that sits next to each other
-/* Sidebar/left column */
-.side {
+.users-sidebar {
   flex: 30%;
   background: #e9ecef;
   padding: 7px;
-  /* border: 1px solid black; */
   height: 18em;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
   margin: 0.5em;
@@ -198,32 +140,23 @@ a:link {
   margin-right: 0.5em;
 }
 
-/* Main column */
-.main {
+.message-board {
   flex: 70%;
   background-color: white;
-  /* padding: 20px; */
-  /* resize: both; */
   overflow: auto;
-
   height: 24em;
-
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
-  /* border: 1px solid black; */
   margin: 0.5em;
   border-radius: 0.3em;
 }
-
-/* 
-*************Testing */
 
 .input-group {
   width: 50%;
   margin: auto;
 }
 
-/* .left-padding {
-  left: 50px;
-  position: relative;
-  max-height: 40px;
-} */
+.input-group-name {
+  display: flex;
+  width: 32%;
+  margin: auto;
+}

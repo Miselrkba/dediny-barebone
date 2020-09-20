@@ -26,13 +26,13 @@ io.on("connect", (socket) => {
     // posli privitaciu spravu
     socket.emit("message", {
       user: "admin",
-      text: `${user.name}, welcome to room ${user.room}.`,
+      text: `${user.name}, vitaj v miestnosti ${user.room}.`,
     });
 
     // ohlas kazdemu v miestnosti kto vstupil
     socket.broadcast
       .to(user.room)
-      .emit("message", { user: "admin", text: `${user.name} has joined!` });
+      .emit("message", { user: "admin", text: `${user.name} vstúpil do miestnosti!` });
 
     // ukaz uzivatelov v miestnosti
     io.to(user.room).emit("roomData", {
@@ -64,8 +64,8 @@ io.on("connect", (socket) => {
     // posli spravu ostatnym ked sa uzivatel odpoji
     if (user) {
       io.to(user.room).emit("message", {
-        user: "Admin",
-        text: `${user.name} has left.`,
+        user: "admin",
+        text: `${user.name} odišiel.`,
       });
 
       // updatuj uzivatelov v miestnosti
@@ -78,5 +78,5 @@ io.on("connect", (socket) => {
 });
 
 server.listen(process.env.PORT || 5000, () =>
-  console.log(`Server has started.`)
+  console.log(`Server je spustený.`)
 );

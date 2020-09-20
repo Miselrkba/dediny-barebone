@@ -19,7 +19,9 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
   const ENDPOINT = "http://localhost:5000/";
 
+  
   useEffect(() => {
+    // premenit na object a vybrat meno a miestnost s routera
     const { name, room } = queryString.parse(location.search);
 
     socket = io(ENDPOINT);
@@ -40,8 +42,8 @@ const Chat = ({ location }) => {
     socket.on("message", (message) => {
       setMessages((messages) => [...messages, message]);
     });
-    // ukaz uzivatelov v miestnosti - cakanie z backendu
 
+    // ukaz uzivatelov v miestnosti - cakanie z backendu
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
@@ -57,9 +59,9 @@ const Chat = ({ location }) => {
   };
 
   return (
-    <div className="outerContainer">
+    <div className="background-join">
       <InfoBar room={room} />
-      <div className="row">
+      <div className="users-and-messages">
         <TextContainer users={users} />{" "}
         <Messages messages={messages} name={name}></Messages>
       </div>
@@ -72,4 +74,6 @@ const Chat = ({ location }) => {
   );
 };
 
+
 export default Chat;
+

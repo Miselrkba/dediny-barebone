@@ -5,7 +5,7 @@ export const TextContainer = ({ users }) => {
   return (
     <div>
       {users ? (
-        <div className="user side">
+        <div className="users-sidebar">
           {" "}
           <h5>Používatelia :</h5>{" "}
           <h6>

@@ -1,27 +1,38 @@
 import React from "react";
 
-
 export const Message = ({ message: { user, text }, name }) => {
+  //check ci je sprava poslana aktualnym uzivatelom alebo adminom
   let isSentByCurrentUser = false;
+  let isSentByAdmin = false;
 
-  const trimmedName = name.trim()
+  console.log(`user : ${user}, name: ${name}`);
 
-  if (user === trimmedName) {
+  if (user === name) {
     isSentByCurrentUser = true;
+  }
+  if (user === 'admin') {
+    isSentByAdmin = true;
   }
 
   return isSentByCurrentUser ? (
     <div className="messageContainer">
-      <p className="sentText pr-10">{trimmedName}</p>
+      <p className="sentText colorBlack">{user}</p>
       <div>
-        <p>{text}</p>
+        <p className="colorOrange">{text}</p>
+      </div>
+    </div>
+  ) : isSentByAdmin ? (
+    <div className="messageContainer">
+      <p className="sentText colorRed">{user}</p>
+      <div className="messageBox">
+        <p className="messageText colorRed">{text}</p>
       </div>
     </div>
   ) : (
     <div className="messageContainer">
-      <p className="sentText colorBrown pr-10">{user}</p>
+      <p className="sentText colorBlack">{user}</p>
       <div className="messageBox">
-        <p className="messageText colorBrown">{text}</p>
+        <p className="messageText colorBlue">{text}</p>
       </div>
     </div>
   );

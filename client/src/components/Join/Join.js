@@ -15,10 +15,11 @@ const Join = () => {
 
   return (
     <div className="join">
+      {/* Hlavicka a podtitul */}
       <h1 className="main-title">Dedinky</h1>
       <h3 className="main-subtitle">Chatujte so susedmi vo vašej dedine... </h3>
-
-      <div className="input-group mb-3">
+       {/* Vlozenie mena */}
+      <div className="input-group-name mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="basic-addon1">
             @
@@ -33,6 +34,7 @@ const Join = () => {
           aria-describedby="basic-addon1"
         />
       </div>
+      {/* vyber dediny */}
       <div className='label'>
         <h4 >Vyberte si dedinu:</h4>
         </div>
@@ -54,7 +56,7 @@ const Join = () => {
 
       {/* Vstup do miestnosti */}
       <Link
-        className="enter"
+        className="enter-room"
         to={`/chat?name=${name}&room=${room}`}
         onClick={(e) => (!name || !room ? e.preventDefault() : null)}
       >
