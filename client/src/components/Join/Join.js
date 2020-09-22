@@ -45,7 +45,7 @@ const Join = () => {
           id="dediny"
           onChange={(e) => setRoom(e.target.value)}
         >
-          {/* Mapuj cez dediny  */}
+          {/* Mapuj cez dediny a vrat option */}
           {dediny.map((dedina) => (
             <option value={dedina} key={dedina}>
               {dedina}
