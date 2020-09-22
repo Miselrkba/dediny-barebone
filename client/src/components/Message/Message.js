@@ -4,9 +4,7 @@ export const Message = ({ message: { user, text }, name }) => {
   //check ci je sprava poslana aktualnym uzivatelom alebo adminom
   let isSentByCurrentUser = false;
   let isSentByAdmin = false;
-
-  console.log(`user : ${user}, name: ${name}`);
-
+  
   if (user === name) {
     isSentByCurrentUser = true;
   }

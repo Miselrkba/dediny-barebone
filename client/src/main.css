@@ -11,6 +11,7 @@ body {
   background-size: cover;
 }
 
+/* ***FRONT PAGE */
 .background-join {
   background-image: url("./images/6.jpg");
   width: 100vw;
@@ -63,15 +64,8 @@ body {
   padding: 1em;
   color: #fff;
 }
-.messages {
-  padding: 1em;
-  overflow: auto;
-  flex: auto;
-  height: 18em;
-  background: wheat;
-  border: 1px solid black;
-}
 
+/* *** ROOMS PAGE */
 .back-btn {
   margin: 1em;
 }
@@ -80,9 +74,23 @@ a:link {
   text-decoration: none;
 }
 
-.input {
-  display: flex;
-  justify-content: center;
+.message-board {
+  flex: 70%;
+  background-color: white;
+  overflow: auto;
+  height: 24em;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+  margin: 0.5em;
+  border-radius: 0.3em;
+}
+
+.messages {
+  padding: 1em;
+  overflow: auto;
+  flex: auto;
+  height: 18em;
+  background: wheat;
+  border: 1px solid black;
 }
 
 .messageContainer {
@@ -104,23 +112,6 @@ a:link {
   padding-right: 10px;
 }
 
-.colorRed {
-  color: crimson;
-}
-
-.colorOrange {
-  color: #fd7e14;
-}
-
-.colorBlack {
-  color: #212529;
-}
-
-.colorBlue {
-  color: dodgerblue;
-}
-
-
 .users-and-messages {
   display: flex;
   margin: 0.5em;
@@ -140,15 +131,10 @@ a:link {
   margin-right: 0.5em;
 }
 
-.message-board {
-  flex: 70%;
-  background-color: white;
-  overflow: auto;
-  height: 24em;
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
-  margin: 0.5em;
-  border-radius: 0.3em;
-}
+.input {
+    display: flex;
+    justify-content: center;
+  }
 
 .input-group {
   width: 50%;
@@ -159,4 +145,25 @@ a:link {
   display: flex;
   width: 32%;
   margin: auto;
+}
+
+/* ***COLORS */
+.colorRed {
+  color: crimson;
+}
+
+.colorOrange {
+  color: #fd7e14;
+}
+
+.colorBlack {
+  color: #212529;
+}
+
+.colorBlue {
+  color: dodgerblue;
+}
+
+.colorGrey {
+    color: grey;
 }

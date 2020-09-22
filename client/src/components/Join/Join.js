@@ -59,6 +59,7 @@ const Join = () => {
         className="enter-room"
         to={`/chat?name=${name}&room=${room}`}
         onClick={(e) => (!name || !room ? e.preventDefault() : null)}
+        onKeyPress={(e) => (!name || !room ? e.preventDefault() : null)}
       >
         <button
           disabled={name ? null : true}
